@@ -3,6 +3,7 @@ import StatLine from './StatLine'
 import spells from '../Data/Spells_v1_trimmed'
 
 import '../statblock.css';
+import './CustomCss/selectCss.css'
 
 const spellDescriptor = (descriptor) => {
     const baseDescriptor =  descriptor ? `[${descriptor}]` : '';
@@ -27,13 +28,14 @@ const lookupSpell = (spellName, stateSetter) => {
 }
 
 const SpellDisplay = (props) => {
-    const dancingLights = spells.find(x => x.name === 'Dancing Lights');
-    const [spell, setSpell] = useState(dancingLights);
-    const [lookupInput, setLookupInput] = useState('');
+    const firstSpell = spells[0];
+    const [spell, setSpell] = useState(firstSpell);
 
     return (
     <section className="statblock">
-        <input onChange={(e) => setLookupInput(e.target.value)}/><button onClick={(e) => lookupSpell(lookupInput, setSpell)}>Find Spell</button>
+        <select className="select-css" onChange={(e) => lookupSpell(e.target.value, setSpell)} >
+            {spells.map(x => x.name).sort().map(x => <option>{x}</option>)}
+        </select>
         <header className="sectionHeader">{spell.name}</header>
         <div>
             <StatLine header="School" section={spell.school}/>{spellDescriptor(spell.descriptor)}&nbsp;
