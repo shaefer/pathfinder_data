@@ -35,18 +35,20 @@ const SpellDisplay = (props) => {
     <section className="statblock">
         <input onChange={(e) => setLookupInput(e.target.value)}/><button onClick={(e) => lookupSpell(lookupInput, setSpell)}>Find Spell</button>
         <header className="sectionHeader">{spell.name}</header>
-        <StatLine header="School" section={spell.school} inline/>{spellDescriptor(spell.descriptor)}&nbsp;
-        <StatLine header="Level" section={spell.spell_level} inline/>
-        <StatLine header="Casting Time" section={spell.casting_time}/>
-        <StatLine header="Components" section={spell.components}/>
-        <StatLine header="Range" section={spell.range}/>
-        <StatLine header="Target" section={spell.target}/>
-        <StatLine header="Effect" section={spell.effect}/>
-        <StatLine header="Area" section={spell.area}/>
-        <StatLine header="Duration" section={spell.duration} inline/>&nbsp;<span>{dismissable(spell.duration, spell.dismissible)}</span>
         <div>
-            <StatLine header="Saving Throw" section={spell.saving_throw} inline/>
-            <StatLine header="Spell Resistance" section={spell.spell_resistence} inline prefix=";&nbsp;"/>
+            <StatLine header="School" section={spell.school}/>{spellDescriptor(spell.descriptor)}&nbsp;
+            <StatLine header="Level" section={spell.spell_level}/>
+        </div>
+        <div><StatLine header="Casting Time" section={spell.casting_time}/></div>
+        <div><StatLine header="Components" section={spell.components}/></div>
+        <div><StatLine header="Range" section={spell.range}/></div>
+        <div><StatLine header="Target" section={spell.target}/></div>
+        <div><StatLine header="Effect" section={spell.effect}/></div>
+        <div><StatLine header="Area" section={spell.area}/></div>
+        <div><StatLine header="Duration" section={spell.duration}/>&nbsp;<span>{dismissable(spell.duration, spell.dismissible)}</span></div>
+        <div>
+            <StatLine header="Saving Throw" section={spell.saving_throw}/>
+            <StatLine header="Spell Resistance" section={spell.spell_resistence} prefix=";&nbsp;"/>
         </div>
         <div><span dangerouslySetInnerHTML={{__html: spell.description_formated}}></span></div>
     </section>
