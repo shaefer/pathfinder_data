@@ -29,11 +29,19 @@ const removeEmptyKeys = (obj, key) => {
     } 
 }
 
+const fixSpellResistance = (obj, key) => {
+    const val = obj[key];
+    obj["spell_resistance"] = val;
+    delete obj[key];
+}
+
 const parseSpells = (spells) => {
     return spells.map(obj => {
         Object.keys(obj).forEach((key,index) => {
             removeEmptyKeys(obj, key);
             convertBooleanKeys(obj, key);
+            if (key === 'spell_resistence')
+                fixSpellResistance(obj, key)
         });
         return obj;
     });
