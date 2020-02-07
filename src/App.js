@@ -1,13 +1,18 @@
 import React from 'react';
-import './App.css';
+import {BrowserRouter, Route} from 'react-router-dom'
+import './Components/CustomCss/pfdb.css'
 
 import SpellDisplay from './Components/SpellDisplay'
+import SplashScreen from './Components/SplashScreen'
 
 const App = () => {
   return (
-    <div className="App">
-      <SpellDisplay/>
-    </div>
+    <BrowserRouter>
+      <div className="pfdb_main">
+        <Route exact path="/"     component={SplashScreen} />
+        <Route       path="/spells"     component={SpellDisplay} />
+      </div>
+    </BrowserRouter>
   );
 }
 
